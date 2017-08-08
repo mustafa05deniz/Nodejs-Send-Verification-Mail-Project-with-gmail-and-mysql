@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta name="keyword" content="HTML, CSS, JAVASCRİPT">
+    <meta name="author" content="">
+	<title>Kayıt işlemi</title>
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<title></title>
+</head>
+<body><br><br><br>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8">
+				
+				<div class="well">
+			
+					<div class="row">
+
+						<% rows.forEach(function(rows) { %>
+						
+							<div class="col-md-6">
+								<h2>Profile</h2>
+								<img class="img-rounded" src="/public/images/slide4.png" width="100px"><br><br>
+								Email = <%=rows.username%>
+							</div>
+						
+
+							<% if(rows.verification == 0){ %>
+							   
+							   <div class="col-md-6">
+							   <h2>Setting</h2>
+							   		<p>Your Email Address Has Not Been Verified</p>
+						  			<button id="sendemail" type="button" class="btn btn-warning">Send email </button>
+						  	   </div>
+
+
+							 <% } else{ %>  
+							   <div class="col-md-6"><p class="bg-info">Your Email Address Has Been Verified</p></div>
+							<% } %>
+
+
+							<script type="text/javascript">
+							    $(document).ready(function(){
+							        $('#sendemail').click(function(){
+									    $("#sendemail").hide();
+									    var data = {};
+										data.userID = '<%=rows.id%>';
+										
+									     $.ajax({
+										    url: '/email',
+										    type: 'POST',
+										    contentType: 'application/json',
+										    data: JSON.stringify(data),
+										    success: function(data) {
+										      console.log(data);
+										    }
+										  });
+									});
+							    });
+							</script>
+
+				 		<% }); %>
+  
+				 	
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
