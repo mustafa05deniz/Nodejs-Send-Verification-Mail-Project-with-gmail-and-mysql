@@ -147,7 +147,7 @@ function sendMail(mail_adress,code){
       }
     });
     var mailOptions = {
-      from: 'secretininfo@gmail.com',
+      from: 'from@gmail.com',
       to: mail,
       subject: 'click this button',
       text: 'That was easy!',
