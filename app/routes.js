@@ -142,8 +142,8 @@ function sendMail(mail_adress,code){
     var transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: 'secretininfo@gmail.com',
-        pass: 'Au6812a6812'
+        user: '**',
+        pass: '***'
       }
     });
     var mailOptions = {
